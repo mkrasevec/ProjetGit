@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: result
+spec:
+  selector:
+    matchLabels:
+      app: result
+  template:
+    metadata:
+      labels:
+        app: result
+    spec:
+      containers:
+      - name: result
+        image: result2
+        imagePullPolicy: 'IfNotPresent'
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        ports:
+          - containerPort: 4000
+

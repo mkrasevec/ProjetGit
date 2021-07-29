@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+spec:
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: postgres:9.4
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        env:
+          - name: POSTGRES_USER
+            value: postgres
+          - name: POSTGRES_PASSWORD
+            value: postgres
+              
+        ports:
+        - containerPort: 5432
+
+      #   volumeMounts:
+      #     - mountPath: /data
+      #       name: volume
+      # volumes:
+      #   - name: volume
+      #     persistentVolumeClaim:
+      #       claimName: mypvc

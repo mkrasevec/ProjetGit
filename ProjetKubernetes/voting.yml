@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vote
+spec:
+  selector:
+    matchLabels:
+      app: vote
+  template:
+    metadata:
+      labels:
+        app: vote
+    spec:
+      containers:
+      - name: vote
+        image: vote2
+        imagePullPolicy: 'IfNotPresent'
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+        ports:
+        - containerPort: 80
